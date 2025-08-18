@@ -2,13 +2,13 @@ import Link from "next/link";
 import type { SanityDocument } from "next-sanity";
 import { urlFor } from "@/utils/sanityImageUrl";
 
-import { client } from "@/sanity/client";
+import { client } from "@/sanity-client/client";
 import Image from "next/image";
 
 const POSTS_QUERY = `*[
   _type == "post"
   && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, image,  author->{
+]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, image, description,  author->{
     name,
     slug,
     image,
@@ -32,7 +32,7 @@ export default async function IndexPage() {
         </header>
 
         {/* Blog Posts */}
-        <div className="grid grid-cols-2 space-y-12">
+        <div className="grid grid-cols-2 gap-4 space-y-12">
           {posts.map((post) => (
             <article key={post._id} className="group">
               <Link href={`/blogs/${post.slug.current}`} className="block">
@@ -73,9 +73,10 @@ export default async function IndexPage() {
                         )}
                       </time>
 
-                      <h2 className="text-2xl font-semibold text-gray-900 mt-2 mb-3 group-hover:text-gray-700 transition-colors duration-200">
+                      <h2 className="text-lg font-semibold text-gray-900 mt-2 mb-3 group-hover:text-gray-700 transition-colors duration-200">
                         {post.title}
                       </h2>
+                      <p className="text-black">{post.description}</p>
 
                       <div className="flex items-center text-gray-600 group-hover:text-gray-900 transition-colors duration-200">
                         <span className="text-sm font-medium">Read more</span>

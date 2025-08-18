@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { client } from "@/sanity/client";
+import { client } from "@/sanity-client/client";
 import { urlFor } from "@/utils/sanityImageUrl";
 
 const AUTHOR_QUERY = `
