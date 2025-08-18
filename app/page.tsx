@@ -22,7 +22,7 @@ export default async function IndexPage() {
 
   return (
     <main className="min-h-screen bg-gray-100">
-      <div className="max-w-4xl mx-auto px-6 py-16">
+      <div className="max-w-7xl mx-auto px-6 py-16">
         {/* Header */}
         <header className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Blog</h1>
@@ -32,7 +32,7 @@ export default async function IndexPage() {
         </header>
 
         {/* Blog Posts */}
-        <div className="space-y-12">
+        <div className="grid grid-cols-2 space-y-12">
           {posts.map((post) => (
             <article key={post._id} className="group">
               <Link href={`/blogs/${post.slug.current}`} className="block">
@@ -98,12 +98,12 @@ export default async function IndexPage() {
                           {post.author.image && (
                             <Image
                               src={urlFor(post.author.image)
-                                .width(40)
-                                .height(40)
+                                .width(10)
+                                .height(10)
                                 .url()}
                               alt={post.author.name}
-                              width={40}
-                              height={40}
+                              width={10}
+                              height={10}
                               className="rounded-full"
                             />
                           )}
